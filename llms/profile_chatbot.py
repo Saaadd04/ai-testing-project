@@ -1,6 +1,7 @@
 import os
 from mistralai import Mistral
 from dotenv import load_dotenv
+from pymongo import MongoClient
 
 load_dotenv()
 
@@ -27,11 +28,47 @@ class Chatbot:
 
         :return:
         """
-        pass
+
+
+        # Replace with your actual MongoDB connection string
+        connection_string = "mongodb+srv://hiretalent-dev:Yulwbmn87x92EQ0U@hiretalent.doscksq.mongodb.net"
+
+        # Connect to MongoDB
+        client = MongoClient(connection_string)
+
+        # Access the 'app-dev' database
+        db = client['app-dev']
+
+        # Access the 'folders' collection
+        collection = db['profiles']
+
+        # Fetch all documents from the 'folders' collection
+        documents = collection.find()
+
+        # Create a concatenated string from the documents
+        large_string = ""
+        for doc in documents:
+            full_name = f"{doc.get('firstName', 'N/A')} {doc.get('lastName', 'N/A')}".strip()
+
+
+            # Build the profile string
+            profile_string = f"Name: {full_name}, areaOfExpertise: {doc.get('areaOfExpertise')},CareerSummary:{doc.get('carrierSummary')} , highlightedSkills: {doc.get('highlightedSkills')} "
+            large_string += f"{profile_string}\n"
+
+        # Close the connection
+        client.close()
+
+        new_message={
+            "role":"system",
+            "content": large_string
+        }
+        self.conversation_history.append((new_message))
+        # print("All Profiles:", large_string)
+
 
 
     def get_user_input(self):
-        user_input=input("\nYou:")
+        user_input=input("\nYour Question :")
         user_message={
             "role":"user",
             "content": user_input
