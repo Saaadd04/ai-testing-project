@@ -24,10 +24,10 @@ messages = [
         "role": "user",
         "content": "What do you know about me ?"
     },
-    # {
-    #     "role":"user",
-    #     "content": "What is Bhopal?"
-    # }
+    {
+        "role":"user",
+        "content": "Tell me about Bhopal?"
+    }
 ]
 
 client = Mistral(api_key=api_key)
