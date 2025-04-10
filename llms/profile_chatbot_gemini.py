@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from google.generativeai import GenerativeModel, configure
 
 
-MONGO_CONNECTION_STRING = "mongodb+srv://hiretalent-dev:Yulwbmn87x92EQ0U@hiretalent.doscksq.mongodb.net"
+MONGO_CONNECTION_STRING = os.getenv("MONGO_CONNECTION_STRING")
 
 if __name__ == '__main__':
 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     """
 
     response = model.generate_content(prompt)
-    print("Gemini Response:", response.text)
+    print(response.text)
 
     while True:
         user_query = input("Ask a question about the profiles (or type 'exit' to stop):,\nYour Question: ")
@@ -77,6 +77,7 @@ if __name__ == '__main__':
             },
             stream=True
         )
+        print("Gemini's response:")
         for chunk in stream_response:
             if hasattr(chunk, 'text') and chunk.text is not None:
                 print(chunk.text, end='', flush=True)

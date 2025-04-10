@@ -60,7 +60,7 @@ class Chatbot:
 
         new_message={
             "role":"system",
-            "content": large_string
+            "content": f"You are a chatbot for my project. Use this data to answer the user's query.{large_string}"
         }
         self.conversation_history.append((new_message))
         # print("All Profiles:", large_string)
