@@ -18,7 +18,7 @@ model = "mistral-large-latest"
 messages = [
     {
         "role": "system",
-        "content": "My name is Syed Saad"
+        "content": "My name is Syed Saad,I am 21 yrs old , I live in Bhopal"
     },
     {
         "role": "user",
