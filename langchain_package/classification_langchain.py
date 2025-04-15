@@ -36,7 +36,7 @@ class Simple_Classification(BaseModel):
 
 
 
-def run(input_text: str, mode: str = "finer"):
+def run(input_text: str):
 
     model_schema = Simple_Classification
 
@@ -44,13 +44,13 @@ def run(input_text: str, mode: str = "finer"):
     prompt = get_prompt().invoke({"input": input_text})
     response = llm.invoke(prompt)
 
-    print(f"\n Classification Mode: {mode.upper()}")
+    # print(f"\n Classification Mode: {mode.upper()}")
     print("Input:", input_text)
     print("Output:", response.model_dump())
 
 if __name__ == "__main__":
     load_api_key()
 
-    # Change text and mode here to switch between classification types
     input_text = input("Enter a text to test: ")
-    run(input_text, mode="simple")
+    # run(input_text, mode="simple")
+    run(input_text)
