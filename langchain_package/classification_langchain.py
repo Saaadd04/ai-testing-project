@@ -15,7 +15,7 @@ def load_api_key():
     else:
         raise ValueError("MISTRAL_AI API key not found in .env file.")
 
-# === Prompt Template (Common for both cases) ===
+
 def get_prompt():
     return ChatPromptTemplate.from_template(
         """
@@ -32,7 +32,6 @@ class Simple_Classification(BaseModel):
     sentiment: str = Field(description="The sentiment of the text")
     aggressiveness: int = Field(description="Aggression level from 1 to 10")
     language: str = Field(description="Language of the text")
-
 
 
 
