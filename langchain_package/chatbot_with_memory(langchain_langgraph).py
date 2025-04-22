@@ -78,7 +78,7 @@ def main():
     print("Welcome to the ChatBot! Type your questions below (type 'exit' to quit).")
 
     while True:
-        user_input = input("\nUser: ")
+        user_input = input(f'\nUser(type "exit" to stop/cancel): ')
         if user_input.lower() == "exit":
             print("Goodbye!")
             break
